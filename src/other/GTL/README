@@ -1,6 +1,7 @@
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
                     The Graph Template Library - GTL
+		             Version 1.2.4
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -61,38 +62,27 @@ WHAT IS GTL?
    Unfortunately, STL has no support for graphs and graph algorithms.
    However, graphs are widely used to model complex relational structures.
 
-   Since we are intensively working with graph algorithms especially
-   in Graphlet (http://www.fmi.uni-passau.de/Graphlet/), we decided to
-   implement GTL, a graph library based on STL. For the design of
-   GTL's API bases on the API of LEDA. GTL contains the classes
-   needed to work with graphs, nodes and edges and some basic
-   algorithms as building blocks for more complex graph
-   algorithms. Further algorithms are under work.	  
+   Graphlet initially motivated the implementation of GTL, a graph 
+   library based on STL. For the design of GTL's API bases on the API 
+   of LEDA. GTL contains the classes needed to work with graphs, nodes 
+   and edges and some basic algorithms as building blocks for more complex 
+   graph algorithms. Further algorithms are under development.	  
 
 
 VERSION:
 
-   The most recent version is 1.2.2. 
+   The most recent version is 1.2.4. 
 
    For the changes since the last release 1.2.1 please see the
    ChangeLog and NEWS files.
 
 
-PLATFORMS:
-
-  We are currently using GTL in Graphlet on the following platforms:
-	
-	* Solaris with gcc-3.x
-	* Linux with gcc-3.x
-	* MS Windows XP and Visual Studio .NET 2003
-	* Mac OS X 10.2, 10.3 
-
 HOMEPAGE:
 
-   Please refer to our homepage 
+   Please refer to 
+
+   http://www.fim.uni-passau.de/en/fim/faculty/chairs/theoretische-informatik/projects.html
   
-	http://www.infosun.fmi.uni-passau.de/GTL
-	
    for updates and latest news.
 
 
@@ -107,56 +97,4 @@ AUTHORS:
    Acknowledgements to
 
         Christian Bachmaier  <chris@infosun.fmi.uni-passau.de>
-
-
-BUGS AND FEATURES:
-
-   If you want to report any bugs in GTL or you have suggestions
-   concerning desirable feature. Please let us know !
-
-   We maintain mailing-lists for all these purposes. The
-   following lists are available:
-
-   gtl@infosun.fmi.uni-passau.de
-   =============================
-	Comments an questions about GTL to the GTL Team
-
-   gtl-bugs@infosun.fmi.uni-passau.de
-   ==================================
-        Bug Reports
-
-   gtl-users@infosun.fmi.uni-passau.de
-   ===================================
-        General Discussion about GTL
-
-   gtl-announce@infosun.fmi.uni-passau.de
-   ======================================
-        Low traffic, read only list for announcements of new GTL
-	versions.
-
-
-   You can subscribe to the the gtl-announce or gtl-users list by
-   sending mail to 
-
-   gtl-announce-request@infosun.fmi.uni-passau.de or
-   gtl-users-request@infosun.fmi.uni-passau.de 
-   
-   with the single word "subscribe" in the body of the message. 
-
-   All announcements on the gtl-announce list are forwarded to
-   the gtl-users list, so there is no need to subscribe to both.  
-
-   Please send bugreports and/or suggestions to the appropriate list
-
-   Always include the following informations in your bugreports:
-
-	* Operating System / Version (+ Service Pack)
-	* Compiler / Version (+ Service Pack)
-	* GTL version
-	* A detailed description of the bug
-	* Any warnings or errors you get.
-	* output of make
-	* the file config.log
-	* $20 :-)
-
 

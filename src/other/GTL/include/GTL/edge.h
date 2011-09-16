@@ -8,7 +8,7 @@
 
 #ifndef GTL_EDGE_H
 #define GTL_EDGE_H
-
+#include <iostream>
 #include <GTL/GTL.h>
 
 #include <list>
