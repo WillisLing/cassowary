@@ -1,4 +1,4 @@
-/* $Id: ClCTest.c,v 1.8 1999/08/27 00:06:29 gjb Exp $
+/* $Id: ClCTest.c,v 1.10 2005/10/20 04:25:21 gjb Exp $
  * Cassowary Incremental Constraint Solver
  * Original Smalltalk Implementation by Alan Borning
  * This C++ Implementation by Greg J. Badros, <gjb@cs.washington.edu>
@@ -31,13 +31,15 @@ int main(int argc, char *argv[] )
   CL_SimplexSolverAddStrongStay(solver,frameWidth,10);
   CL_SimplexSolverAddStrongStay(solver,frameHeight,10);
   x = CL_ClvNew("x",0,solver);
+#ifdef CL_BUILD_FD_SOLVER_WITH_GTL
   y = CL_CldvNew("y",4,6,9,15,20,FDN_EOL);
-
+#endif
   CL_ClvPrint(x,stdout);
   printf("\n");
+#ifdef CL_BUILD_FD_SOLVER_WITH_GTL
   CL_ClvPrint(y,stdout);
   printf("\n");
- 
+#endif
   printf("x = %g, frameWidth = %g\n",CL_ClvValue(x),CL_ClvValue(frameWidth));
 
   cn = CL_ParseConstraint("x = frameWidth/3", "strong");

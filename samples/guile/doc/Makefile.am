@@ -1,8 +1,9 @@
-## $Id: Makefile.am,v 1.1 2000/03/12 21:58:03 gjb Exp $
+## $Id: Makefile.am,v 1.2 2000/03/13 00:54:07 gjb Exp $
 ## Process this file with automake to create Makefile.in
 
-EXTRACT_DOCS = perl ../../../scwm/utilities/dev/scwmdoc -PCL
+SUBDIRS = src
 
+EXTRACT_DOCS = perl ../../../scwm/utilities/dev/scwmdoc -PCL
 
 EXTRA_DIST=cassowary_scm-procedures.txt cassowary_scm-variables.txt cassowary_scm.sgml
 

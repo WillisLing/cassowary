@@ -1,4 +1,4 @@
-// $Id: ClVariable.h,v 1.46 1999/04/29 09:45:31 gjb Exp $
+// $Id: ClVariable.h,v 1.48 2005/10/20 04:25:22 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -93,7 +93,7 @@ public:
   bool IsNil() const { return pclv == NULL; }
 
   virtual FDNumber DesiredValue() const
-    { assert(false); }
+    { assert(false); return 0; } 
 
   virtual list<FDNumber> *PlfdnDomain()
     { assert(false); return NULL; }

@@ -1,4 +1,4 @@
-// $Id: CL.java,v 1.14 1999/04/20 00:26:24 gjb Exp $
+// $Id: CL.java,v 1.16 2011/05/23 04:47:17 gjbadros Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -15,7 +15,8 @@ package EDU.Washington.grad.gjb.cassowary;
 
 public class CL {
   protected final static boolean fDebugOn = false;
-  protected final static boolean fTraceOn = false;
+  public static boolean fTraceOn = false; //true;
+  protected final static boolean fTraceAdded = false;
   protected final static boolean fGC = false;
 
   protected static void debugprint(String s)

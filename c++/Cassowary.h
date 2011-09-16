@@ -1,4 +1,4 @@
-// $Id: Cassowary.h,v 1.28 1999/08/27 00:06:26 gjb Exp $
+// $Id: Cassowary.h,v 1.29 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -36,11 +36,13 @@
 #include <iostream>
 #endif
 #pragma warning(disable : 4786)
+#pragma warning(disable : 4101)
+#pragma warning(disable : 4267)
 using namespace std;
-#define __FUNCTION__ "WIN"
+// #define __FUNCTION__ "WIN"
 #else
 #ifndef CL_NO_IO
-#include <iostream.h>
+#include <iostream>
 #endif
 #endif
 

@@ -1,4 +1,4 @@
-// $Id: ClSimplexSolver.java,v 1.34 1999/12/10 21:29:39 gjb Exp $
+// $Id: ClSimplexSolver.java,v 1.39 2011/05/23 04:45:47 gjbadros Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -119,6 +119,7 @@ public class ClSimplexSolver extends ClTableau
       setExternalVariables();
     }
 
+    cn.addedTo(this);
     return  this;
   }
 
@@ -301,9 +302,17 @@ public class ClSimplexSolver extends ClTableau
   }
 
 
+  public ClSimplexSolver removeConstraint(ClConstraint cn)
+    throws ExCLConstraintNotFound, ExCLInternalError
+  {
+    removeConstraintInternal(cn);
+    cn.removedFrom(this);
+    return this;
+  }
+
   // Remove the constraint cn from the tableau
   // Also remove any error variable associated with cn
-  public final ClSimplexSolver removeConstraint(ClConstraint cn)
+  private final ClSimplexSolver removeConstraintInternal(ClConstraint cn)
        throws ExCLConstraintNotFound, ExCLInternalError
   {
     if (fTraceOn) fnenterprint("removeConstraint: " + cn);
@@ -357,7 +366,12 @@ public class ClSimplexSolver extends ClTableau
 	  if (fTraceOn) traceprint("Marker " + marker + "'s coefficient in " + expr + " is " + coeff);
 	  if (coeff < 0.0) {
 	    double r = -expr.constant() / coeff;
-	    if (exitVar == null || r < minRatio) {
+            // Bland's anti-cycling rule:
+            // if multiple variables are about the same,
+            // always pick the lowest via some total
+            // ordering -- I use their hash codes
+	    if (exitVar == null || r < minRatio ||
+                (CL.approx(r,minRatio) && v.hashCode() < exitVar.hashCode())) {
 	      minRatio = r;
 	      exitVar = v;
 	    }
@@ -385,7 +399,16 @@ public class ClSimplexSolver extends ClTableau
 	if (col.size() == 0) {
 	  removeColumn(marker);
 	} else {
-	  exitVar = (ClAbstractVariable) col.elements().nextElement();
+          // exitVar = (ClAbstractVariable) col.elements().nextElement();
+          // was the above; instead, let's be sure we do not
+          // pick the objective --01/07/01 gjb
+          for (Enumeration e = col.elements(); e.hasMoreElements(); ) {
+            ClAbstractVariable v = (ClAbstractVariable) e.nextElement();
+            if (v != _objective) {
+              exitVar = v;
+              break;
+            }
+          }
 	}
       }
       
@@ -869,7 +892,8 @@ public class ClSimplexSolver extends ClTableau
 	    if (c > 0.0 && v.isPivotable()) {
 	      double zc = zRow.coefficientFor(v);
 	      r = zc/c; // FIXGJB r:= zc/c or zero, as ClSymbolicWeight-s
-	      if (r < ratio) {
+	      if (r < ratio || 
+                  (CL.approx(r,ratio) && v.hashCode() < entryVar.hashCode())) {
 		entryVar = v;
 		ratio = r;
 	      }
@@ -997,12 +1021,14 @@ public class ClSimplexSolver extends ClTableau
       for (Enumeration e = terms.keys(); e.hasMoreElements() ; ) {
 	ClAbstractVariable v = (ClAbstractVariable) e.nextElement();
 	double c = ((ClDouble) terms.get(v)).doubleValue();
+//	if (v.isPivotable() && c < 0.0 && (entryVar == null || v.hashCode() < entryVar.hashCode())) {
 	if (v.isPivotable() && c < objectiveCoeff) {
 	  objectiveCoeff = c;
 	  entryVar = v;
+          break;
 	}
       }
-      if (objectiveCoeff >= -_epsilon || entryVar == null)
+      if (objectiveCoeff >= -_epsilon) // || entryVar == null)
 	return;
       if (fTraceOn) traceprint("entryVar == " + entryVar + ", objectiveCoeff == " + objectiveCoeff);
 
@@ -1018,8 +1044,9 @@ public class ClSimplexSolver extends ClTableau
 	  if (fTraceOn) traceprint("pivotable, coeff = " + coeff);
 	  if (coeff < 0.0) {
 	    r = - expr.constant() / coeff;
-	    if (r < minRatio) {
-	      if (fTraceOn) traceprint("New minratio == " + r);
+	    if (r < minRatio || 
+                (CL.approx(r,minRatio) && 
+                 v.hashCode() < exitVar.hashCode()))  {
 	      minRatio = r;
 	      exitVar = v;
 	    }

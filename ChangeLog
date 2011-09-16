@@ -1,3 +1,47 @@
+2005-10-19  Greg Badros  <greg@google.com>
+
+	* Numerous changes to make more standard-C++ compliant, now tested
+	to compile and pass regression tests for g++ 3.2.2 on RH Linux.
+
+	* Included adding exception specifications, using sstream
+	appropriately, fixing some const_iterators, using namespace std,
+	dropping the .h from standard headers, fixing some flex/bison
+	build issues, and more.
+
+Fri May  5 17:24:25 2000  Greg J. Badros  <gjb@cs.washington.edu>
+
+	* java/ClReader.cup: Fix the precedence.  Put time/divide higher
+	(later in the file) than plus/minus
+
+Thu May  4 10:59:52 2000  Greg J. Badros  <gjb@cs.washington.edu>
+
+	* java/ClReader.lex: Untabify, and only write "Already in Hash."
+	message if m_debug_lex.
+
+Mon Apr 10 09:35:42 2000  Greg J. Badros  <gjb@cs.washington.edu>
+
+	* configure.in, README: Bump to 0.61
+
+Mon Apr 10 08:53:03 2000  Greg J. Badros  <gjb@cs.washington.edu>
+
+	* java/ClSimplexSolver.java:  Rename removeConstraint() to
+	removeConstraintInternal and make new removeConstraint just a
+	wrapper around removeConstraintInternal (like change to C++ --
+	still need to call removeConstraintInternal on failed
+	addConstraints).   Invoke ClConstraint.addedTo()/removedFrom()
+	when constraints are added/removed so that they know if they can
+	have their strength changed.
+
+	* java/ClConstraint.java: Added _times_added member var, and
+	addedTo()/removedFrom() memfns to support new changeStrength()
+	member function.
+
+Thu Apr  6 08:20:09 2000  Greg J. Badros  <gjb@cs.washington.edu>
+
+	* c++/ClSimplexSolver.cc (ChangeStrengthAndWeight): Set
+	_fNeedsSolving so that we get the right answer after this function 
+	call.  Thanks Anthony Beurivé!
+
 Sun Mar 12 13:40:44 2000  Greg J. Badros  <gjb@cs.washington.edu>
 
 	* guile/cassowary_scm.cc: Give docstrings as arguments

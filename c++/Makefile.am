@@ -1,18 +1,12 @@
-## $Id: Makefile.am,v 1.32 1999/12/16 03:13:57 gjb Exp $
+## $Id: Makefile.am,v 1.36 2007/09/19 07:28:48 gjbadros Exp $
 ## Process this file with automake to create Makefile.in
 
-if CL_BUILD_STATIC_LIBRARY
-lib_LIBRARIES = libcassowary.a
-endif
 lib_LTLIBRARIES = libcassowary.la
 
 libcassowary_la_LDFLAGS = -version-info 0:1:0
 
 INCLUDES = @GUILE_INCLUDES@ @GTL_INCLUDES@
-LDADD = libcassowary.a -L@prefix@/lib @GTL_LIB@
-if CL_BUILD_TESTS
-ClCTest_LDADD = $(LDADD) -lstdc++
-endif
+LDADD = -L@prefix@/lib @GTL_LIB@ libcassowary.la
 
 benchdir=$(libdir)/cassowary/bench
 bugsdir=$(libdir)/cassowary/bugs
@@ -60,6 +54,12 @@ test_programs = \
 	$(test_fd_solver)
 
 test_PROGRAMS = ClTests
+
+ClCTest_LDADD = $(LDADD) -lstdc++
+
+ClTests_SOURCES = ClTests.cc
+ClTests_LDADD = $(LDADD) -lstdc++
+
 if CL_BUILD_TESTS
 moretest_PROGRAMS = @TEST_PROGRAMS@
 bench_PROGRAMS = @BENCH_PROGRAMS@
@@ -90,11 +90,8 @@ sources = \
 	ClSlackVariable.cc \
 	ClDummyVariable.cc \
 	ClReader-lex.cc \
+	ClReader.cc \
 	ClC.cc
-
-libcassowary_a_SOURCES = \
-	$(sources) \
-	$(sources_for_fd_solver)
 
 libcassowary_la_SOURCES = \
 	$(sources) \
@@ -120,6 +117,7 @@ pkginclude_HEADERS = \
 	ClLinearInequality.h \
 	ClSolver.h \
 	ClSimplexSolver.h \
+	ClTimedSimplexSolver.h \
 	ClStayConstraint.h \
 	ClStrength.h \
 	ClSymbolicWeight.h \
@@ -140,7 +138,6 @@ pkginclude_HEADERS = \
 	$(headers_for_fd_solver)
 
 
-ClTests_SOURCES = ClTests.cc
 
 if CL_BUILD_TESTS
 ClFDTests_SOURCES = ClFDTests.cc
@@ -164,10 +161,10 @@ test_ClStrength_SOURCES = test-ClStrength.cc
 test_ClVariable_SOURCES = test-ClVariable.cc
 endif
 
-ClReader-lex.cc: ClReader.l ClReader.h ClReader.cc.h
+ClReader-lex.cc: ClReader.l ClReader.h ClReader.hh
 	$(LEX) -Pcl -o$@ $<
 
-ClReader.cc.h ClReader.cc: ClReader.y ClReader.h
-	$(YACC) -d -pcl --output-file $@ $<
+ClReader.cc ClReader.hh: ClReader.y ClReader.h
+	$(YACC) -d -pcl --output-file ClReader.cc $<
 
 cassowary/config-inline.h: cassowary

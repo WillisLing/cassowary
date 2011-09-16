@@ -1,4 +1,4 @@
-// $Id: ClTableau.cc,v 1.44 1999/04/20 00:25:21 gjb Exp $
+// $Id: ClTableau.cc,v 1.45 2005/10/20 04:25:22 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -51,13 +51,13 @@ ostream &
 ClTableau::printExternalVariablesTo(ostream &xo) const
 {
   xo << "Parametric: ";
-  ClVarSet::iterator itParVars = _externalParametricVars.begin();
+  ClVarSet::const_iterator itParVars = _externalParametricVars.begin();
   for ( ; itParVars != _externalParametricVars.end(); ++itParVars ) {
     ClVariable v = *itParVars;
     xo << v << " ";
   }
   xo << "\nBasic: ";
-  ClVarSet::iterator itRowVars = _externalRows.begin();
+  ClVarSet::const_iterator itRowVars = _externalRows.begin();
   for ( ; itRowVars != _externalRows.end() ; ++itRowVars ) {
     ClVariable v = *itRowVars;
     xo << v << " ";

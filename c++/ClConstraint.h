@@ -1,4 +1,4 @@
-// $Id: ClConstraint.h,v 1.34 1999/08/27 00:06:29 gjb Exp $
+// $Id: ClConstraint.h,v 1.37 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -25,9 +25,6 @@
 #include <set>
 #include <string>
 
-class ClSimplexSolver;
-class ClFDSolver;
-class ClBlueSolver;
 
 // enum setup so additive inverse flips the direction of the inequality
 enum ClCnRelation {cnEQ = 0, cnNEQ = 100, cnLEQ = 2, cnGEQ = -2, cnLT = 3, cnGT = -3 };
@@ -81,7 +78,7 @@ public:
   // constraint represents Expression=0; for linear inequalities it
   // represents Expression>=0.)
   virtual ClLinearExpression Expression() const
-    { assert(false); }
+    { assert(false); return 0; }
 
   // Returns true if this is an edit constraint
   virtual bool IsEditConstraint() const
@@ -129,7 +126,8 @@ public:
 
   virtual bool FIsOkayForSimplexSolver() const { return true; }
 
-  void ChangeStrength( const ClStrength &strength) 
+  void ChangeStrength( const ClStrength &strength)
+      throw (ExCLTooDifficult)
     { 
       if (_times_added == 0) {
         setStrength(strength);
@@ -139,6 +137,7 @@ public:
     }
 
   void ChangeWeight( double weight )
+      throw (ExCLTooDifficult)
     { 
       if (_times_added == 0) {
         setWeight(weight);
@@ -163,9 +162,9 @@ public:
     return *this;
   }
 
-  friend ClSimplexSolver;
-  friend ClFDSolver;
-  friend ClBlueSolver;
+  friend class ClSimplexSolver;
+  friend class ClFDSolver;
+  friend class ClBlueSolver;
 private:
 
   ClSymbolicWeight symbolicWeight() const {

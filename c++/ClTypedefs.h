@@ -1,4 +1,4 @@
-// $Id: ClTypedefs.h,v 1.10 1999/04/27 01:14:03 gjb Exp $
+// $Id: ClTypedefs.h,v 1.11 2005/10/20 04:25:22 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -13,7 +13,7 @@
 #define CL_TYPEDEFS_H__
 
 #if defined(HAVE_CONFIG_H) && !defined(CONFIG_H_INCLUDED) && !defined(CONFIG_INLINE_H_INCLUDED)
-#include <cassowary/config-inline.h>
+#include <config-inline.h>
 #define CONFIG_INLINE_H_INCLUDED
 #endif
 
@@ -26,6 +26,8 @@
 class ClVariable;
 class ClConstraint;
 class ClEditInfo;
+
+using namespace std;
 
 // For Tableau
 // ClTableauVarSet is not a ClSet, for performance reasons 

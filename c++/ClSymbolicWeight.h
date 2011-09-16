@@ -1,4 +1,4 @@
-// $Id: ClSymbolicWeight.h,v 1.29 2000/01/24 18:13:02 gjb Exp $
+// $Id: ClSymbolicWeight.h,v 1.30 2001/03/11 02:07:34 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -19,6 +19,7 @@
 
 #include "Cassowary.h"
 #include "ClErrors.h"
+#include "ClVariable.h"
 #include <vector>
 
 #ifdef USE_GC_WEIGHT

@@ -1,6 +1,6 @@
-#!/uns/bin/guile -s
+#!/usr/local/bin/guile -s
 !#
-;;; $Id: cltests.scm,v 1.4 1999/03/17 07:40:56 gjb Exp $ -*- scwm -*-
+;;; $Id: cltests.scm,v 1.5 2001/01/08 02:51:13 gjb Exp $ -*- scwm -*-
 ;;; simple1
 ;;; be sure $CASSOWARY_HOME/guile is in your $GUILE_LOAD_PATH
 ;;; guile will look for app/cassowary/libconstraints.so to be somewhere off

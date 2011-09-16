@@ -1,4 +1,4 @@
-// $Id: ClLinearExpression.h,v 1.51 1999/07/12 02:38:59 gjb Exp $
+// $Id: ClLinearExpression.h,v 1.53 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning

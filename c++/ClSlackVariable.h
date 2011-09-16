@@ -1,4 +1,4 @@
-// $Id: ClSlackVariable.h,v 1.17 1999/04/20 00:25:14 gjb Exp $
+// $Id: ClSlackVariable.h,v 1.18 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -33,8 +33,8 @@ public:
 #endif
 
 protected:
-  friend ClTableau;
-  friend ClSimplexSolver;
+  friend class ClTableau;
+  friend class ClSimplexSolver;
 
   ClSlackVariable(string Name = "") :
     ClAbstractVariable(Name)

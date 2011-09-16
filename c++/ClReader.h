@@ -1,4 +1,4 @@
-// $Id: ClReader.h,v 1.6 1999/04/25 01:43:36 gjb Exp $
+// $Id: ClReader.h,v 1.7 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -15,7 +15,7 @@
 #define CREADER_H
 
 #if defined(HAVE_CONFIG_H) && !defined(CONFIG_H_INCLUDED) && !defined(CONFIG_INLINE_H_INCLUDED)
-#include <cassowary/config-inline.h>
+#include <config-inline.h>
 #define CONFIG_INLINE_H_INCLUDED
 #endif
 
@@ -27,8 +27,9 @@
 #include "ClStrength.h"
 #include "ClLinearExpression_fwd.h"
 
+using namespace std;
+
 class ClConstraint;
-class istream;
 
 class ClVarLookupFunction : public unary_function<const string &,ClVariable *> {
 public:
@@ -94,10 +95,11 @@ struct ClParseData {
 inline 
 const ClStrength
 &ClsFromSz(const char *sz)
+    throw (ExCLParseErrorMisc)
 {
   const ClStrength *pcls = &ClsRequired();
   double n1, n2, n3;
-  if (strcmp("required",sz) == 0)
+  if (strcasecmp("required",sz) == 0)
     ; /* initialized to ClsRequired, above */
   else if (strcasecmp("strong",sz) == 0) { pcls = &ClsStrong(); }
   else if (strcasecmp("medium",sz) == 0) { pcls = &ClsMedium(); }

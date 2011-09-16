@@ -1,4 +1,4 @@
-/* $Id: ClReader.l,v 1.9 1999/05/02 00:43:53 gjb Exp $
+/* $Id: ClReader.l,v 1.10 2005/10/20 04:25:21 gjb Exp $
  Cassowary Incremental Constraint Solver
  Original Smalltalk Implementation by Alan Borning
  This C++ Implementation by Greg J. Badros, <gjb@cs.washington.edu>
@@ -15,7 +15,7 @@
    (uses the -d option of bison) */
 
 #include "ClReader.h"
-#include "ClReader.cc.h"
+#include "ClReader.hh"
 
 #ifdef HAVE_CONFIG_H
 #include <cassowary/config.h>

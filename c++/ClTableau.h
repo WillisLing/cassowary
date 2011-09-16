@@ -1,4 +1,4 @@
-// $Id: ClTableau.h,v 1.41 1999/04/20 00:25:22 gjb Exp $
+// $Id: ClTableau.h,v 1.42 2005/10/20 04:25:22 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -54,7 +54,7 @@ class ClTableau {
     cerr << "(" << v << ", " << subject << ")" << endl;
 #endif
     ClVarSet &column = _columns[v];
-    ClVarSet::const_iterator it = column.find(subject);
+    ClVarSet::iterator it = column.find(subject);
     assert(it != column.end());
     column.erase(it);
 #ifdef CL_TRACE_VERBOSE

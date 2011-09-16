@@ -1,4 +1,4 @@
-// $Id: ClDummyVariable.h,v 1.18 1999/04/20 00:24:51 gjb Exp $
+// $Id: ClDummyVariable.h,v 1.19 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -35,8 +35,8 @@ public:
 #endif
 
 protected:
-  friend ClTableau;
-  friend ClSimplexSolver;
+  friend class ClTableau;
+  friend class ClSimplexSolver;
 
   ClDummyVariable(string Name = "") :
     ClAbstractVariable(Name)

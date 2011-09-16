@@ -1,4 +1,4 @@
-// $Id: ClSolver.h,v 1.4 1999/04/29 09:45:30 gjb Exp $
+// $Id: ClSolver.h,v 1.6 2005/10/20 04:25:22 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -34,7 +34,15 @@ class ClSolver {
     { } 
 
   // Add the constraint cn to the solver
-  virtual ClSolver &AddConstraint(ClConstraint *const pcn) = 0;
+  virtual ClSolver &AddConstraint(ClConstraint *const pcn) 
+    throw(ExCLTooDifficultSpecial,
+          ExCLStrictInequalityNotAllowed,
+          ExCLReadOnlyNotAllowed,
+          ExCLEditMisuse,
+          ExCLRequiredFailure,
+          ExCLRequiredFailureWithExplanation,
+          ExCLInternalError)
+      = 0;
 
   // Remove the constraint cn from the solver
   virtual ClSolver &RemoveConstraint(ClConstraint *const pcn) = 0;
@@ -49,9 +57,7 @@ class ClSolver {
           AddConstraint(pcn);
           return true;
       }
-      catch (const ExCLRequiredFailure &e)
-        { return false; }
-      catch (const ExCLTooDifficult &e)
+      catch (const ExCLError &e)
         { return false; }
     }
 

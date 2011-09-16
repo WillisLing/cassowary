@@ -1,4 +1,4 @@
-// $Id: ClReader.cup,v 1.5 1999/12/16 01:23:07 gjb Exp $
+// $Id: ClReader.cup,v 1.6 2000/05/06 00:24:42 gjb Exp $
 // ClReader.cup
 // (C) 1999 Will Portnoy and Greg J. Badros
 // Needs JavaCup package
@@ -25,8 +25,8 @@ terminal String VARIABLE;
 
 non terminal constraint, equation, inequality, expr;
 
-precedence left TIMES, DIVIDE;
 precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
 precedence left UMINUS;
 
 constraint	::=	  equation:a 			{: RESULT = a; :}

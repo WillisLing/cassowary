@@ -1,4 +1,4 @@
-// $Id: ClSolver.cc,v 1.3 1999/04/29 09:45:29 gjb Exp $
+// $Id: ClSolver.cc,v 1.4 2005/10/20 04:25:22 gjb Exp $
 
 #ifdef HAVE_CONFIG_H
 #include <cassowary/config.h>
@@ -14,6 +14,13 @@
 
 ClSolver &
 ClSolver::AddConstraint(ClConstraint *const ) 
+    throw(ExCLTooDifficultSpecial,
+          ExCLStrictInequalityNotAllowed,
+          ExCLReadOnlyNotAllowed,
+          ExCLEditMisuse,
+          ExCLRequiredFailure,
+          ExCLRequiredFailureWithExplanation,
+          ExCLInternalError)
 {
   return *this;
 }
@@ -54,4 +61,3 @@ ostream &operator<<(ostream &xo, const ClSolver &solver)
 
 ostream &operator<<(ostream &xo, const list<FDNumber> &listFDN)
 { return PrintTo(xo,listFDN); }
-

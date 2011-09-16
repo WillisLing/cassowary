@@ -1,4 +1,4 @@
-/* $Id: ClC.h,v 1.18 1999/08/27 00:06:28 gjb Exp $
+/* $Id: ClC.h,v 1.19 2005/10/20 04:25:21 gjb Exp $
  * Cassowary Incremental Constraint Solver
  * Original Smalltalk Implementation by Alan Borning
  * This C++ Implementation by Greg J. Badros, <gjb@cs.washington.edu>
@@ -85,6 +85,7 @@ void *CL_VariablePv(CLV var);
 const char *CL_VariableName(CLV var);
 
 #if defined(CL_HAVE_GTL) && defined(CL_BUILD_FD_SOLVER)
+#define CL_BUILD_FD_SOLVER_WITH_GTL
 #ifndef FDN_EOL
 #define FDN_EOL LONG_MIN
 #endif

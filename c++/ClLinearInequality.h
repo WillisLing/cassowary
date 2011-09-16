@@ -1,4 +1,4 @@
-// $Id: ClLinearInequality.h,v 1.24 1999/11/24 23:41:00 gjb Exp $
+// $Id: ClLinearInequality.h,v 1.25 2005/10/20 04:25:21 gjb Exp $
 //
 // Cassowary Incremental Constraint Solver
 // Original Smalltalk Implementation by Alan Borning
@@ -39,7 +39,8 @@ class ClLinearInequality : public ClLinearConstraint {
 		    ClCnRelation op,
 		    const ClLinearExpression &cle,
 		    const ClStrength &strength = ClsRequired(),
-		    double weight = 1.0) :
+		    double weight = 1.0)
+     throw (ExCLEditMisuse):
    ClLinearConstraint( cle, strength, weight),
    _fStrictInequality(false)
    { 
